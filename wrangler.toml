@@ -1,0 +1,15 @@
+name = "goit-slack-reminder-bot"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+
+[vars]
+TIMEZONE = "Europe/Kyiv"
+CALENDAR_URL = "https://www.edu.goit.global/uk/calendar"
+GROUP_IDS = ""
+
+[[kv_namespaces]]
+binding = "GOIT_AUTH"
+id = "e1954a7641d5483dbd4bd13bfb43a062"
+
+[triggers]
+crons = ["0 6 * * *"]
