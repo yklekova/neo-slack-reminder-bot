@@ -1,4 +1,4 @@
-import { getCalendarEvents, getGroupIds } from "./goit.ts";
+import { getCalendarEvents, getGroupIds, getRawGroupsForDebug } from "./goit.ts";
 import { selectDigestEvents } from "./reminders.ts";
 import { sendDailyDigest, sendServiceAlert } from "./slack.ts";
 import type { Env } from "./types.ts";
@@ -36,6 +36,10 @@ export default {
       return Response.json({ ok: true, service: "goit-slack-reminder-bot" });
     }
 
+    if (url.pathname === "/debug/groups") {
+     const groups = await getRawGroupsForDebug(env);
+     return Response.json(groups);
+   }
     return new Response("Not found", { status: 404 });
   },
 } satisfies ExportedHandler<Env>;
