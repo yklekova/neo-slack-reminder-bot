@@ -5,7 +5,7 @@ compatibility_date = "2026-08-01"
 [vars]
 TIMEZONE = "Europe/Kyiv"
 CALENDAR_URL = "https://www.edu.goit.global/uk/calendar"
-GROUP_IDS = ""
+GROUP_IDS = "49079851"
 
 [[kv_namespaces]]
 binding = "GOIT_AUTH"
