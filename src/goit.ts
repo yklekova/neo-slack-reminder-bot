@@ -184,7 +184,14 @@ export async function getCalendarEvents(
   for (const groupId of groupIds) params.append("groupIds[]", groupId);
 
   const body = await apiGet(env, "/groupEvent/listAllowedEvents", params);
-  return arrayAt(body, ["groupEventInfos", "events", "data"]) as GoitEvent[];
+  const events = arrayAt(body, ["groupEventInfos", "events", "data"]) as GoitEvent[];
+
+  // GoIT's API doesn't reliably filter by groupIds[], so filter here too.
+  const allowedGroupIds = new Set(groupIds.map(String));
+  return events.filter((event) => {
+    const eventGroupId = event.resource?.groupId;
+    return eventGroupId === undefined || allowedGroupIds.has(String(eventGroupId));
+  });
 }
 
 export async function getBroadcastLink(env: Env, eventId: string): Promise<string | null> {
