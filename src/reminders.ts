@@ -111,26 +111,23 @@ export interface DigestEvents {
 
 export function selectDigestEvents(events: GoitEvent[], now: Date): DigestEvents {
   const nowMs = now.getTime();
+  const eventCutoff = nowMs + 24 * 60 * 60 * 1000;
+  const deadlineCutoff = nowMs + 3 * 24 * 60 * 60 * 1000;
   const upcomingEvents: GoitEvent[] = [];
   const upcomingDeadlines: GoitEvent[] = [];
-
   for (const event of events) {
     const start = getEventStart(event);
     if (!start || start.getTime() <= nowMs) continue;
-    if (isDeadline(event)) {
+    if (isDeadline(event) && start.getTime() <= deadlineCutoff) {
       upcomingDeadlines.push(event);
-    } else {
+    } else if (!isDeadline(event) && start.getTime() <= eventCutoff) {
       upcomingEvents.push(event);
     }
   }
-
   const byStart = (left: GoitEvent, right: GoitEvent) =>
     getEventStart(left)!.getTime() - getEventStart(right)!.getTime();
-
-  // TEMPORARY TEST MODE: show only the single nearest event/deadline,
-  // ignoring the normal 24h / 3-day windows. Revert before going live.
   return {
-    upcomingEvents: upcomingEvents.sort(byStart).slice(0, 1),
-    upcomingDeadlines: upcomingDeadlines.sort(byStart).slice(0, 1),
+    upcomingEvents: upcomingEvents.sort(byStart),
+    upcomingDeadlines: upcomingDeadlines.sort(byStart),
   };
 }
