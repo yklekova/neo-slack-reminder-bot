@@ -109,7 +109,7 @@ export async function sendDailyDigest(env: Env, digest: DigestEvents): Promise<v
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      text: `GoIT: ${upcomingEvents.length} подій, ${upcomingDeadlines.length} дедлайнів`,
+      text: `NEOVERSITY: ${upcomingEvents.length} подій, ${upcomingDeadlines.length} дедлайнів`,
       blocks,
     }),
   });
@@ -126,7 +126,7 @@ export async function sendServiceAlert(env: Env, message: string): Promise<void>
   const response = await fetch(env.SLACK_WEBHOOK_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text: `⚠️ GoIT reminder bot: ${message}` }),
+    body: JSON.stringify({ text: `⚠️ NEOVERSITY reminder bot: ${message}` }),
   });
 
   if (!response.ok) {
