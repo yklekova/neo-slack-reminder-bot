@@ -12,4 +12,4 @@ binding = "GOIT_AUTH"
 id = "e1954a7641d5483dbd4bd13bfb43a062"
 
 [triggers]
-crons = ["6 * * * *"]
+crons = ["*/2 * * * *"]
