@@ -1,7 +1,9 @@
 name = "goit-slack-reminder-bot"
 main = "src/index.ts"
 compatibility_date = "2026-08-01"
-
+[observability]
+   enabled = true
+   
 [vars]
 TIMEZONE = "Europe/Kyiv"
 CALENDAR_URL = "https://www.edu.goit.global/uk/calendar"
