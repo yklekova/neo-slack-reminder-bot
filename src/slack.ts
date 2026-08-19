@@ -55,7 +55,7 @@ async function actionLink(
   }
 
   return {
-    label: "Відкрити календар GoIT",
+    label: "Відкрити календар Neoversity",
     url: env.CALENDAR_URL ?? "https://www.edu.goit.global/uk/calendar",
   };
 }
@@ -85,7 +85,7 @@ export async function sendDailyDigest(env: Env, digest: DigestEvents): Promise<v
   const blocks: Array<Record<string, unknown>> = [
     {
       type: "header",
-      text: { type: "plain_text", text: "📅 GoIT: найближчі події", emoji: true },
+      text: { type: "plain_text", text: "📅 NEOVERSITY: найближчі події", emoji: true },
     },
   ];
 
