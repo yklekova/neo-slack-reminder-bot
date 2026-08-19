@@ -213,6 +213,3 @@ export async function getBroadcastLink(env: Env, eventId: string): Promise<strin
   }
   return null;
 }
-export async function getRawGroupsForDebug(env: Env): Promise<unknown> {
-  return apiGet(env, "/group/listForCalendar");
-}
